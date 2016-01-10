@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+
+<body ng-app="publickApp">
+  <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <header>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Rss read angular</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="myContainer">
+    <div class="row">
+      <form class="form-horizontal col-sm-4" ng-controller="D3Ctrl">
+        <div class="form-group">
+          <h2>Channel</h2>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="exampleInputRss" placeholder="RSS" ng-model="url.address">
+            <em>For ex. http://rss.cnn.com/rss/cnn_topstories.rss</em>
+          </div>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="exampleInputRss" placeholder="Name Channel" ng-model="url.name">
+          </div>
+          <div class="col-sm-2">
+            <button type="submit" class="btn btn-success" ng-click="saveRss()" ng-disabled="!url.address || !url.name">Save Rss</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary" ng-click="showFeed()" ng-disabled="!url.address">Shoow feed</button>
+          </div>
+        </div>
+      </form>
+      <main class="col-sm-4">
+        <h2>Rss</h2>
+        <ul class="list-group"></ul>
+
+      </main>
+    <main class="col-sm-3">
+      <h2>message</h2>
+    </main>
+          <main class="col-sm-1">
+        <h2>Statistick</h2>
+          <donat></donat>
+      </main>
+    </div>
+    <div class="row">
+      <main class="col-sm-4">
+        <ul class="list-group">
+          <li class="list-group-item item" ng-repeat="item in rss">
+            <!-- <div class="some"> -->
+            <span class="badge" ng-click="removeRss($index)">Remove</span>
+            <span class="badge" ng-click="editRss($index,item.name)" ng-model='click' ng-hide="click">Edit</span>
+            <span class="badge" ng-click="editRss($index,item.name)" ng-show='click'>Save</span>
+
+            <input type="text" ng-show="click" placeholder="edit channel" ng-model="item.name">
+            <!-- <p ng-hide="click">Channel: {{item.name}} name.channel</p> -->
+            <button type="button" class="list-group-item" ng-click="showRss($index)">{{item.name}} rss.nameChannel
+              <span class="badge" ng-hide='click' ng-hide="click">{{$index + 1}} number</span>
+            </button>
+            <hr class='hr' />
+            <!-- </div> -->
+          </li>
+
+        </ul>
+      </main>
+
+    </div>
+
+
+  </div>
+
+
+
+  <div class="footer">
+    <div class="container">
+      <p>
+        <span class="glyphicon glyphicon-heart"></span> from the Kaflan</p>
+    </div>
+  </div>
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/d3/d3.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/controllers/d3.js"></script>
+  <script src="scripts/directives/donat.js"></script>
+  <script src="scripts/services/feedurl.js"></script>
+  <script src="scripts/services/getchannel.js"></script>
+  <script src="scripts/services/deletechannel.js"></script>
+  <script src="scripts/services/editchannel.js"></script>
+  <script src="scripts/services/getrss.js"></script>
+  <!-- endbuild -->
+</body>
+
+</html>
