@@ -12,24 +12,25 @@ app.use(bodyParser());
 app.use(methodOverride());
 var urls = ['http://rss.cnn.com/rss/cnn_topstories.rss'];
 app.get('/delete', function(res, req){
-
+  console.log('res',res,'\n' ,'req', req);
 });
 
 app.get('/put', function(res, req){
-
+  console.log('res',res,'\n' ,'req', req);
 });
 
 
 app.get('/channels', function(res, req){
+    console.log('res',res,'\n' ,'req', req);
   res.send(urls);
 })
 
 app.get('/channels/:id', function(res, req){
-  console.log(req, req.id);
+  console.log('res',res,'\n' ,'req', req);
 })
 
 app.get('/post', function(res, req){
-
+console.log('res',res,'\n' ,'req', req);
 });
 
 // app.get('*', function(req, res) {

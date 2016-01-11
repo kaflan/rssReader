@@ -78,7 +78,7 @@
           <li class="list-group-item item" ng-repeat="item in rss">
             <!-- <div class="some"> -->
             <span class="badge" ng-click="removeRss($index)">Remove</span>
-            <span class="badge" ng-click="editRss($index,item.name)" ng-model='click' ng-hide="click">Edit</span>
+            <span class="badge" ng-model='click' ng-hide="click">Edit</span>
             <span class="badge" ng-click="editRss($index,item.name)" ng-show='click'>Save</span>
 
             <input type="text" ng-show="click" placeholder="edit channel" ng-model="item.name">
