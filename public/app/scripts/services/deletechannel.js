@@ -11,9 +11,8 @@ angular.module('publickApp')
   .service('deleteChannel', function ($http) {
     return {
       delete: function(index){
-        return $post('/delete', index).success(function(res){
+        return $http.delete('/delete/' + index).success(function(res){
           var list = angular.copy(res);
-          console.log(res);
           return list;
         });
       }

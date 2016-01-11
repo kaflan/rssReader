@@ -11,9 +11,9 @@ angular.module('publickApp')
   .service('editChannel', function ($http) {
     return{
       edit: function(index, data){
-        return $http.put('/put', index, data).then(function(res){
-          var list = angular.copy(res);
+        return $http.put('/put/'+ index, data).then(function(res){
           console.log(res);
+          var list = angular.copy(res);
           return list;
         });
       }

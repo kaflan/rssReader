@@ -12,9 +12,7 @@ angular.module('publickApp')
     return {
       post: function (dat) {
         return $http.post('/post', dat).success(function(res){
-          console.log(res);
           var list = angular.copy(res);
-          console.log(res);
           return list;
         });
       }

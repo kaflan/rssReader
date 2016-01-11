@@ -12,9 +12,7 @@ angular.module('publickApp')
     return {
       get: function(index) {
         return $http.get('/channels/'+ index).success(function(res) {
-          console.log(res);
           var list = angular.copy(res);
-          console.log(res);
           return list;
         });
       }

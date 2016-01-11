@@ -10,30 +10,34 @@
 angular.module('publickApp')
   .controller('D3Ctrl', function($scope, feedUrl, getChannels, deleteChannel, editChannel, getRss) {
     getChannels.get().then(function(res){
-      $scope.rss = angular.copy(res);
+      $scope.channels = angular.copy(res.data);
     });
-
-    $scope.click = false;
     $scope.showFeed = function() {
-      console.log($scope.url);
+      console.log($scope.url, 'feedUrl');
       feedUrl.post($scope.url).then(function(res) {
-        $scope.rss = res;
+        $scope.channels = angular.copy(res) ;
       });
     };
-    $scope.showRss = function(index) {
+    $scope.showChannel = function(index) {
+      console.log('click');
       getRss.get(index).then(function(res) {
-        console.log(res);
+        console.log('icome', res.data);
       });
     };
-    $scope.removeRss = function(index) {
+    $scope.removeChannel = function(index) {
       deleteChannel.delete(index).then(function(res) {
-        console.log(res);
+        $scope.channels = angular.copy(res.data);
       });
     };
-    $scope.editRss = function(index, item) {
+    $scope.editChannel = function(index, name, url) {
       $scope.click = !$scope.click;
-      console.log(item, index, 'click');
-      editChannel.edit(index, $scope.item);
+      if(!$scope.click){
+          console.log({name: name, url: url}, 'click2');
+            editChannel.edit(index, {name: name, url: url}).then(function(res){
+              console.log('work', res);
+              $scope.channels = angular.copy(res.data);
+            });
+      }
       return true;
     };
 
