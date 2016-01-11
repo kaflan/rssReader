@@ -11,7 +11,7 @@ angular.module('publickApp')
   .service('getRss', function ($http) {
     return {
       get: function(index) {
-        return $http.get('/getRss/'+ index).success(function(res) {
+        return $http.get('/channels/'+ index).success(function(res) {
           console.log(res);
           var list = angular.copy(res);
           console.log(res);

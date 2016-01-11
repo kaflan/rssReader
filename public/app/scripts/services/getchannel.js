@@ -11,7 +11,7 @@ angular.module('publickApp')
   .service('getChannels', function($http) {
     return {
       get: function() {
-        return $http.get('/getChannels').success(function(res) {
+        return $http.get('/сhannels').success(function(res) {
           console.log(res);
           var list = angular.copy(res);
           console.log(res);

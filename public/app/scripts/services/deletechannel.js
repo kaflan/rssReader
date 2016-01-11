@@ -12,7 +12,9 @@ angular.module('publickApp')
     return {
       delete: function(index){
         return $post('/delete', index).success(function(res){
-
+          var list = angular.copy(res);
+          console.log(res);
+          return list;
         });
       }
     }

@@ -18,16 +18,16 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-
-      })
-      .when('/', {
-
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+  ]);
+  // .config(function ($routeProvider) {
+  //   $routeProvider
+  //     .when('/', {
+  //
+  //     })
+  //     .when('/', {
+  //
+  //     })
+  //     .otherwise({
+  //       redirectTo: '/'
+  //     });
+  // });

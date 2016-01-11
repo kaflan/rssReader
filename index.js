@@ -10,6 +10,28 @@ app.use(express.static(__dirname + '/public'));
 app.use(partials());
 app.use(bodyParser());
 app.use(methodOverride());
+var urls = ['http://rss.cnn.com/rss/cnn_topstories.rss'];
+app.get('/delete', function(res, req){
+
+});
+
+app.get('/put', function(res, req){
+
+});
+
+
+app.get('/channels', function(res, req){
+  res.send(urls);
+})
+
+app.get('/channels/:id', function(res, req){
+  console.log(req, req.id);
+})
+
+app.get('/post', function(res, req){
+
+});
+
 app.get('*', function(req, res) {
   res.sendFile(__dirname + '/public/app/index.html');
 });
