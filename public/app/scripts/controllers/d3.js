@@ -9,15 +9,11 @@
  */
 angular.module('publickApp')
   .controller('D3Ctrl', function($scope, feedUrl, getChannels, deleteChannel, editChannel, getRss) {
-    // getChannels.get().then(function(res){
-    //   $scope.rss = [ {name:"fisrst", title:"title"},{}];
-    // });
-    // deleteChannel.delete();
+    getChannels.get().then(function(res){
+      $scope.rss = angular.copy(res);
+    });
+
     $scope.click = false;
-    $scope.rss = [{
-      name: "fisrst",
-      title: "title"
-    }];
     $scope.showFeed = function() {
       console.log($scope.url);
       feedUrl.post($scope.url).then(function(res) {
