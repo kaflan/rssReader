@@ -9,36 +9,37 @@
  */
 angular.module('publickApp')
   .controller('D3Ctrl', function($scope, feedUrl, getChannels, deleteChannel, editChannel, getRss) {
-    getChannels.get().then(function(res){
-      $scope.channels = angular.copy(res.data);
-    });
-    $scope.showFeed = function() {
-      console.log($scope.url, 'feedUrl');
-      feedUrl.post($scope.url).then(function(res) {
-        $scope.channels = angular.copy(res) ;
-      });
-    };
-    $scope.showChannel = function(index) {
-      console.log('click');
-      getRss.get(index).then(function(res) {
-        console.log('icome', res.data);
-      });
-    };
-    $scope.removeChannel = function(index) {
-      deleteChannel.delete(index).then(function(res) {
-        $scope.channels = angular.copy(res.data);
-      });
-    };
-    $scope.editChannel = function(index, name, url) {
-      $scope.click = !$scope.click;
-      if(!$scope.click){
-          console.log({name: name, url: url}, 'click2');
-            editChannel.edit(index, {name: name, url: url}).then(function(res){
-              console.log('work', res);
-              $scope.channels = angular.copy(res.data);
-            });
-      }
-      return true;
-    };
+    console.log('lanch');
+    // getChannels.get().then(function(res){
+    //   $scope.channels = angular.copy(res.data);
+    // });
+    // $scope.showFeed = function() {
+    //   console.log($scope.url, 'feedUrl');
+    //   feedUrl.post($scope.url).then(function(res) {
+    //     $scope.channels = angular.copy(res) ;
+    //   });
+    // };
+    // $scope.showChannel = function(index) {
+    //   console.log('click');
+    //   getRss.get(index).then(function(res) {
+    //     console.log('icome', res.data);
+    //   });
+    // };
+    // $scope.removeChannel = function(index) {
+    //   deleteChannel.delete(index).then(function(res) {
+    //     $scope.channels = angular.copy(res.data);
+    //   });
+    // };
+    // $scope.editChannel = function(index, name, url) {
+    //   $scope.click = !$scope.click;
+    //   if(!$scope.click){
+    //       console.log({name: name, url: url}, 'click2');
+    //         editChannel.edit(index, {name: name, url: url}).then(function(res){
+    //           console.log('work', res);
+    //           $scope.channels = angular.copy(res.data);
+    //         });
+    //   }
+    //   return true;
+    // };
 
   });

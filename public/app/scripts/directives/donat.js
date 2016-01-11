@@ -32,7 +32,7 @@ angular.module('publickApp')
     return {
       templateUrl: 'views/d3.html',
       restrict: 'E',
-      controller: 'D3Ctrl',
+      // controller: 'D3Ctrl',
       link: link
     };
   });
