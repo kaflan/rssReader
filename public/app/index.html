@@ -38,9 +38,9 @@
       </div>
     </nav>
   </header>
-  <div class="myContainer" >
+  <div class="myContainer">
     <div class="row">
-      <form class="form-horizontal col-sm-4" >
+      <form class="form-horizontal col-sm-4">
         <div class="form-group">
           <h2>Channel</h2>
           <div class="col-sm-8">
@@ -61,27 +61,32 @@
         </div>
       </form>
       <main class="col-sm-4">
-        <h2>Rss</h2>
+        <h2>Rss <span class="badge" ng-if="rss.length !== 0">{{rss.length}} news</span></h2> 
         <ul class="list-group item" ng-if="rss.length !== 0">
           <li class="list-group-item " ng-repeat="item in rss">
-              <div class="some">
-                <button type="button" class="list-group-item" ng-click="showNews(item.title, item.description)" ng-model="message">
-                  {{item.title}}
-                </button>
-              </div>
+            <div class="some">
+              <button type="button" class="list-group-item" ng-click="showNews(item.title, item.summary, item.image.url, item.guid)" ng-model="message">
+                {{item.title}}
+              </button>
+            </div>
           </li>
         </ul>
       </main>
       <main class="col-sm-3">
         <h2>News</h2>
-        <ul class="list-group item" ng-hide="item">
+        <ul class="list-group item" ng-show="massage">
           <li class="list-group-item">
-              <div class="some">
-                <button type="button" class="list-group-item">
-                  <h4>{{item.title}}</h4>
-                  <em>{{item.description}}</em>
-                </button>
-              </div>
+            <div class="some">
+              <button type="button" class="list-group-item">
+                <h4>{{item.title}}</h4>
+                <a ng-href="{{item.url}}"></a>
+                <img ng-src="{{item.image}}" alt="" />
+                <br/>
+                <p class="col-sm-12" ng-bind-html="item.description | htmlParser">
+                </p>
+                <a ng-href="{{item.url}}">Go to Reead</a>
+              </button>
+            </div>
           </li>
         </ul>
       </main>
@@ -93,7 +98,7 @@
     <div class="row">
       <main class="col-sm-4" ng-if='channels.length !== 0'>
         <h4>Channels</h4>
-        <ul class="list-group item" >
+        <ul class="list-group item">
           <li class="list-group-item " ng-repeat="item in channels">
             <div class="some">
               <input type="text" class="col-sm-6" ng-show="click" placeholder="edit name" ng-model="item.name">
@@ -151,6 +156,8 @@
   <script src="scripts/services/editchannel.js"></script>
   <script src="scripts/services/getrss.js"></script>
   <script src="scripts/controllers/donat.js"></script>
+  <script src="scripts/filters/htmlparser.js"></script>
+  <script src="scripts/filters/htmlurlparser.js"></script>
   <!-- endbuild -->
 </body>
 

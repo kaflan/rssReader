@@ -9,19 +9,18 @@
  */
 angular.module('publickApp')
   .controller('D3Ctrl', function($scope, feedUrl, getChannels, deleteChannel, editChannel, getRss) {
-    // console.log('lunch', D3Ctrl);
+
+    $scope.rss = [];
     getChannels.get().then(function(res){
       $scope.channels = angular.copy(res.data);
     });
     $scope.showFeed = function() {
-      console.log($scope.url, 'feedUrl');
       feedUrl.post($scope.url).then(function(res) {
         $scope.channels = angular.copy(res);
       });
     };
     $scope.showChannel = function(index) {
       getRss.get(index).then(function(res) {
-        console.log('icome', res.data);
         $scope.rss = angular.copy(res.data);
       });
     };
@@ -40,11 +39,13 @@ angular.module('publickApp')
             });
       }
     };
-    $scope.showNews = function(title, description){
+    $scope.showNews = function(title, description, image, url){
       $scope.massage = !$scope.massage;
       $scope.item = {
         title: title,
-        description: description
+        description: description,
+        image: image,
+        url: url
       };
     }
   });
