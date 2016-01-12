@@ -1,4 +1,5 @@
-var feedparser = require('ortoo-feedparser');
+var FeedParser = require('feedparser');
+var request = require('request');
 var express = require('express');
 var app = express();
 var session = require('express-session');
@@ -7,8 +8,8 @@ var methodOverride = require('method-override');
 var partials = require('express-partials');
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public/app'));
-app.use(partials());
-app.use(bodyParser());
+// app.use(partials());
+// app.use(bodyParser());
 app.use(methodOverride());
 var urls = [{
   name: 'CNN',
@@ -33,29 +34,46 @@ app.put('/put/:index', function(req, res) {
 });
 
 
-app.get('/channels', function(req, res) {
-  console.log('send data', urls);
-  res.send(urls);
-})
-
 app.get('/channels/:id', function(req, res) {
   console.log('req.params.id', req.params.id, '\n');
   var index = req.params.id;
   var url = urls[index];
   console.log('channel', url['url']);
-  feedparser.parseUrl(url).on('article', function(article){
-    console.log(article, 'article');
-    res.send(article);
+  var mainRequest = request(url['url']);
+  var feedparser = new FeedParser();
+  mainRequest.on('error', function(error) {
+    // handle any request errors
   });
-})
+  mainRequest.on('response', function(res) {
+    var stream = this;
+
+    if (res.statusCode != 200) return this.emit('error', new Error('Bad status code'));
+
+    stream.pipe(feedparser);
+  });
+  feedparser.on('readable', function() {
+    // This is where the action is!
+    var stream = this;
+    var meta = this.meta
+    var item;
+    var arr = [];
+    while (item = stream.read()) {
+      arr.push(item);
+      console.log(item, 'item' , '\n');
+    }
+      res.send(arr);
+  });
+});
+
+
+app.get('/channels', function(req, res) {
+  res.send(urls);
+});
 
 app.get('/post', function(req, res) {
   // console.log('res',res,'\n' ,'req', req);
 });
 
-// app.get('*', function(req, res) {
-//   res.sendFile(__dirname + '/public/app/index.html');
-// });
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

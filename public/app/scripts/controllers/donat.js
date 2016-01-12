@@ -9,9 +9,6 @@
  */
 angular.module('publickApp')
   .controller('DonatCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    console.log('donat');
+  
   });

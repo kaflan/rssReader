@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title></title>
@@ -16,7 +17,7 @@
   <!-- endbuild -->
 </head>
 
-<body ng-app="publickApp">
+<body ng-app="publickApp" ng-controller="D3Ctrl">
   <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -37,9 +38,9 @@
       </div>
     </nav>
   </header>
-  <div class="myContainer">
+  <div class="myContainer" >
     <div class="row">
-      <form class="form-horizontal col-sm-4" ng-controller="D3Ctrl">
+      <form class="form-horizontal col-sm-4" >
         <div class="form-group">
           <h2>Channel</h2>
           <div class="col-sm-8">
@@ -78,19 +79,20 @@
         <ul class="list-group item" ng-if='channels.length !== 0'>
           <li class="list-group-item " ng-repeat="item in channels">
             <div class="some">
-            <input type="text"  class="col-sm-6" ng-show="click" placeholder="edit name" ng-model="item.name">
-            <input type="text"  class="col-sm-6" ng-show="click" placeholder="edit url" ng-model="item.url">
-            <p ng-hide="click" class="col-sm-10"> Channel name: {{item.name}}</p>
-            <span class="badge glyphicon glyphicon glyphicon-trash" ng-click="removeChannel($index)"> </span>
-            <span class="badge glyphicon glyphicon-pencil" ng-model='click' ng-click="editChannel($index,item.name, item.url)" ng-hide="click"> </span>
-            <span class="badge glyphicon glyphicon-floppy-saved" ng-click="editChannel($index,item.name, item.url)" ng-show='click'> </span>
-            <button type="button" class="list-group-item" ng-click="showChannel($index)">
-              <span>Channel address: </span>   <address class="">
-                 {{item.url}}
-               </address>
-              <span class="badge" ng-hide='click' ng-hide="click">Channel number: {{$index + 1}}</span>
-            </button>
-            <hr class='hr'/>
+              <input type="text" class="col-sm-6" ng-show="click" placeholder="edit name" ng-model="item.name">
+              <input type="text" class="col-sm-6" ng-show="click" placeholder="edit url" ng-model="item.url">
+              <p ng-hide="click" class="col-sm-10"> Channel name: {{item.name}}</p>
+              <span class="badge glyphicon glyphicon glyphicon-trash" ng-click="removeChannel($index)"> </span>
+              <span class="badge glyphicon glyphicon-pencil" ng-model='click' ng-click="editChannel($index,item.name, item.url)" ng-hide="click"> </span>
+              <span class="badge glyphicon glyphicon-floppy-saved" ng-click="editChannel($index,item.name, item.url)" ng-show='click'> </span>
+              <button type="button" class="list-group-item" ng-click="showChannel($index)">
+                <span>Channel address: </span>
+                <address class="">
+                  {{item.url}}
+                </address>
+                <span class="badge" ng-hide='click' ng-hide="click">Channel number: {{$index + 1}}</span>
+              </button>
+              <hr class='hr' />
             </div>
           </li>
         </ul>
