@@ -22,6 +22,7 @@ angular.module('publickApp')
     $scope.showChannel = function(index) {
       getRss.get(index).then(function(res) {
         console.log('icome', res.data);
+        $scope.rss = angular.copy(res.data);
       });
     };
     $scope.removeChannel = function(index) {
@@ -38,7 +39,12 @@ angular.module('publickApp')
               $scope.channels = angular.copy(res.data);
             });
       }
-      return true;
     };
-
+    $scope.showNews = function(title, description){
+      $scope.massage = !$scope.massage;
+      $scope.item = {
+        title: title,
+        description: description
+      };
+    }
   });
