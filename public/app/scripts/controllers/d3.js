@@ -12,7 +12,6 @@ angular.module('publickApp')
     // console.log('lunch', D3Ctrl);
     getChannels.get().then(function(res){
       $scope.channels = angular.copy(res.data);
-      console.log($scope.channels);
     });
     $scope.showFeed = function() {
       console.log($scope.url, 'feedUrl');
@@ -21,7 +20,6 @@ angular.module('publickApp')
       });
     };
     $scope.showChannel = function(index) {
-      console.log('click');
       getRss.get(index).then(function(res) {
         console.log('icome', res.data);
       });

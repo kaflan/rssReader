@@ -74,9 +74,9 @@
       </main>
     </div>
     <div class="row">
-      <main class="col-sm-4">
+      <main class="col-sm-4" ng-if='channels.length !== 0'>
         <h4>Channels</h4>
-        <ul class="list-group item" ng-if='channels.length !== 0'>
+        <ul class="list-group item" >
           <li class="list-group-item " ng-repeat="item in channels">
             <div class="some">
               <input type="text" class="col-sm-6" ng-show="click" placeholder="edit name" ng-model="item.name">

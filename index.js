@@ -50,17 +50,19 @@ app.get('/channels/:id', function(req, res) {
     if (res.statusCode != 200) return this.emit('error', new Error('Bad status code'));
     stream.pipe(feedparser);
   });
+  var arr = [];
   feedparser.on('readable', function() {
     // This is where the action is!
     var stream = this;
     var meta = this.meta
     var item;
-    var arr = [];
     while (item = stream.read()) {
       arr.push(item);
     }
-      res.send(arr);
   });
+  feedparser.on('end', function() {
+      res.send(arr);
+  })
 });
 
 
