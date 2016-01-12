@@ -48,7 +48,6 @@ app.get('/channels/:id', function(req, res) {
     var stream = this;
 
     if (res.statusCode != 200) return this.emit('error', new Error('Bad status code'));
-
     stream.pipe(feedparser);
   });
   feedparser.on('readable', function() {
@@ -59,7 +58,6 @@ app.get('/channels/:id', function(req, res) {
     var arr = [];
     while (item = stream.read()) {
       arr.push(item);
-      console.log(item, 'item' , '\n');
     }
       res.send(arr);
   });
