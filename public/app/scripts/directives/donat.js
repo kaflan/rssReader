@@ -6,9 +6,10 @@
  * @description
  * # donat
  */
-function link(scope, el, attr) {
+function link(scope, el) {
   var data = []; // тут наши буквы посчитаные
   var color = d3.scale.category20b();
+
   var el = el[0];
   var width = el.clientWidth;
   var height = el.clientHeight;
@@ -37,8 +38,12 @@ function link(scope, el, attr) {
 function letters(str){
   var obj = {};
   var max = 1;
-  for(var i = 0; i < str.length; i++){
-    var prop = str[i];
+  var up = str.toUpperCase();
+  var onlyLatter = up.match(/([A-Z]+)/g);
+  var clearLeterrs = onlyLatter.join('');
+  var arr = [];
+  for(var i = 0; i < clearLeterrs.length; i++){
+    var prop = clearLeterrs[i];
     if (obj[prop]) {
       obj[prop]++;
       if (max < obj[prop]) max = obj[prop];
@@ -46,13 +51,18 @@ function letters(str){
       obj[prop] = 1;
     }
   }
-  return obj;
+  for(var item in obj){
+     arr.push({key :  item, value : obj[item]});
+   }
+  return arr;
 }
+
 angular.module('publickApp')
   .directive('donat', function() {
     return {
       templateUrl: 'views/d3.html',
       restrict: 'E',
+      scope:{},
       controller: 'DonatCtrl',
       link: link
     };
