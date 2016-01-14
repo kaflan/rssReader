@@ -9,7 +9,6 @@
  */
 angular.module('publickApp')
   .controller('D3Ctrl', function($scope, feedUrl, getChannels, deleteChannel, editChannel, getRss) {
-
     $scope.rss = [];
     getChannels.get().then(function(res){
       $scope.channels = angular.copy(res.data);
@@ -40,7 +39,7 @@ angular.module('publickApp')
       }
     };
     $scope.showNews = function(title, description, image, url){
-      $scope.massage = !$scope.massage;
+      $scope.massage = true;
       $scope.item = {
         title: title,
         description: description,

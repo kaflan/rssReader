@@ -37,3 +37,6 @@ svg{
 hr {
   border-top: 1px solid #868080;
 }
+p .next::nth-child{
+display: none;
+}

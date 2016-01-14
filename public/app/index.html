@@ -61,7 +61,7 @@
         </div>
       </form>
       <main class="col-sm-4">
-        <h2>Rss <span class="badge" ng-if="rss.length !== 0">{{rss.length}} news</span></h2> 
+        <h2>Rss <span class="badge" ng-if="rss.length !== 0">{{rss.length}} news</span></h2>
         <ul class="list-group item" ng-if="rss.length !== 0">
           <li class="list-group-item " ng-repeat="item in rss">
             <div class="some">
@@ -73,18 +73,17 @@
         </ul>
       </main>
       <main class="col-sm-3">
-        <h2>News</h2>
+        <h2>Select news</h2>
         <ul class="list-group item" ng-show="massage">
           <li class="list-group-item">
             <div class="some">
               <button type="button" class="list-group-item">
-                <h4>{{item.title}}</h4>
-                <a ng-href="{{item.url}}"></a>
+                <h4>
+                  <a ng-href="{{item.url}}">{{item.title}}</a></h4>
                 <img ng-src="{{item.image}}" alt="" />
                 <br/>
-                <p class="col-sm-12" ng-bind-html="item.description | htmlParser">
+                <p class="col-sm-12 next" ng-bind-html="item.description | htmlParser">
                 </p>
-                <a ng-href="{{item.url}}">Go to Reead</a>
               </button>
             </div>
           </li>
