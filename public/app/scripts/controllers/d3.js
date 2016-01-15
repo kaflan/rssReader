@@ -10,6 +10,8 @@
 angular.module('publickApp')
   .controller('D3Ctrl', function($scope, feedUrl, getChannels, deleteChannel, editChannel, getRss) {
     $scope.rss = [];
+
+   $scope.myData = [{key:"h", value:20}];
     getChannels.get().then(function(res){
       $scope.channels = angular.copy(res.data);
     });
@@ -46,5 +48,9 @@ angular.module('publickApp')
         image: image,
         url: url
       };
-    }
+         $scope.myData = $scope.item.title;
+    };
+
+
+
   });

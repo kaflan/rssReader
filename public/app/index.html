@@ -10,6 +10,7 @@
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -116,7 +117,7 @@
       </main>
       <main class="col-sm-1">
         <h2>Statistick</h2>
-        <donat text="{{item.title}}"></donat>
+      <bars-chart chart-data="myData"></bars-chart>
       </main>
     </div>
   </div>
@@ -142,6 +143,7 @@
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script src="bower_components/angular-touch/angular-touch.js"></script>
   <script src="bower_components/d3/d3.js"></script>
+  <script src="bower_components/nvd3/build/nv.d3.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 

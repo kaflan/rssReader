@@ -9,6 +9,4 @@
  */
 angular.module('publickApp')
   .controller('DonatCtrl', function () {
-    console.log('donat');
-  
   });
